@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Layer 1 — Avirat Theatre | Torrent Pharmaceuticals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0D0D1A;--bg-card:#13132A;--bg-raised:#1A1A35;--bg-input:#1E1E38;--border:rgba(255,255,255,0.06);--border-v:rgba(139,92,246,0.35);--border-v-dim:rgba(139,92,246,0.15);--purple:#8B5CF6;--purple-light:#A78BFA;--purple-bright:#C4B5FD;--purple-dim:rgba(139,92,246,0.12);--purple-glow:0 0 24px rgba(139,92,246,0.22);--pink:#EC4899;--grad-main:linear-gradient(135deg,#6D28D9 0%,#9333EA 50%,#EC4899 100%);--grad-card:linear-gradient(135deg,#6D28D9 0%,#7C3AED 100%);--grad-subtle:linear-gradient(135deg,rgba(109,40,217,0.25) 0%,rgba(147,51,234,0.1) 100%);--text:#F0EFFE;--text-muted:rgba(240,239,254,0.45);--text-dim:rgba(240,239,254,0.22);--font:'DM Sans',system-ui,sans-serif;--font-mono:'DM Mono',monospace;--radius:14px;--radius-sm:8px;--transition:280ms cubic-bezier(0.4,0,0.2,1);--grad-av:linear-gradient(135deg,#3b0764,#7c3aed);--grad-auto:linear-gradient(135deg,#14532d,#16a34a);--grad-int:linear-gradient(135deg,#1e1b4b,#4338ca);--grad-total:linear-gradient(135deg,#3b0764,#6d28d9,#be185d)}
+[data-theme="light"]{--bg:#F5F4F9;--bg-card:#FFFFFF;--bg-raised:#EEEDF5;--bg-input:#E6E4F2;--border:rgba(0,0,0,0.07);--border-v:rgba(109,40,217,0.28);--border-v-dim:rgba(109,40,217,0.13);--purple:#7C3AED;--purple-light:#6D28D9;--purple-bright:#5B21B6;--purple-dim:rgba(109,40,217,0.07);--purple-glow:0 0 24px rgba(109,40,217,0.12);--grad-subtle:linear-gradient(135deg,rgba(109,40,217,0.1) 0%,rgba(147,51,234,0.05) 100%);--text:#1A1030;--text-muted:rgba(26,16,48,0.5);--text-dim:rgba(26,16,48,0.28)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13.5px;line-height:1.55;min-height:100vh;transition:background var(--transition),color var(--transition);-webkit-font-smoothing:antialiased}
+.top-bar{height:3px;background:var(--grad-main);background-size:200% 100%;animation:barSlide 3s linear infinite}
+@keyframes barSlide{0%{background-position:0 0}100%{background-position:200% 0}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.header{background:var(--bg-card);border-bottom:1px solid var(--border);padding:16px 36px;display:flex;align-items:center;justify-content:space-between;transition:background var(--transition)}
+.header-left{display:flex;flex-direction:column;gap:2px}
+.header-eyebrow{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.2em;color:var(--purple-light)}
+.header-title{font-size:17px;font-weight:800;color:var(--text);letter-spacing:-0.02em}
+.header-right{display:flex;align-items:center;gap:16px}
+.header-meta{font-size:10px;color:var(--text-muted);text-align:right}
+.theme-toggle{display:flex;align-items:center;gap:7px;background:var(--bg-raised);border:1px solid var(--border);border-radius:20px;padding:6px 12px 6px 10px;cursor:pointer;transition:var(--transition);font-family:var(--font);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-muted)}
+.theme-toggle:hover{border-color:var(--border-v);color:var(--text)}
+.toggle-track{width:30px;height:16px;border-radius:20px;background:var(--bg-input);border:1px solid var(--border-v);position:relative;transition:background var(--transition);flex-shrink:0}
+[data-theme="light"] .toggle-track{background:var(--grad-card)}
+.toggle-thumb{position:absolute;top:2px;left:2px;width:10px;height:10px;border-radius:50%;background:var(--purple-light);transition:transform var(--transition),background var(--transition);box-shadow:0 1px 4px rgba(0,0,0,0.3)}
+[data-theme="light"] .toggle-thumb{transform:translateX(14px);background:#fff}
+
+.nav{background:var(--bg-card);border-bottom:1px solid var(--border);padding:0 36px;display:flex;position:sticky;top:0;z-index:900;transition:background var(--transition);overflow-x:auto}
+.nav-tab{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-muted);padding:14px 18px;cursor:pointer;border-bottom:2px solid transparent;transition:var(--transition);white-space:nowrap}
+.nav-tab:hover{color:var(--text)}
+.nav-tab.active{color:var(--purple-light);border-bottom-color:var(--purple)}
+
+.main{padding:28px 36px 64px;max-width:1440px;margin:0 auto}
+.tab-panel{display:none}
+.tab-panel.active{display:block;animation:fadeUp 220ms ease}
+
+/* Sub nav */
+.sub-nav{display:flex;gap:0;background:var(--bg-raised);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;margin-bottom:24px;width:fit-content}
+.sub-tab{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.11em;padding:10px 22px;cursor:pointer;background:transparent;color:var(--text-muted);border:none;transition:var(--transition);font-family:var(--font);white-space:nowrap}
+.sub-tab:hover{color:var(--text)}
+.sub-tab.active{background:var(--grad-main);color:#fff}
+.sub-panel{display:none}
+.sub-panel.active{display:block;animation:fadeUp 200ms ease}
+
+/* Hero Banner */
+.hero-banner{border-radius:var(--radius);padding:32px 36px;margin-bottom:24px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between}
+.hero-banner::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.06)}
+.hero-left{position:relative;z-index:1}
+.hero-eyebrow{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:rgba(255,255,255,0.5);margin-bottom:6px}
+.hero-title{font-size:24px;font-weight:800;color:#fff;letter-spacing:-0.03em;margin-bottom:4px}
+.hero-sub{font-size:12px;color:rgba(255,255,255,0.55)}
+.hero-right{position:relative;z-index:1;text-align:right}
+.hero-amount{font-size:32px;font-weight:800;color:#fff;letter-spacing:-0.03em}
+.hero-amount-sub{font-size:10px;color:rgba(255,255,255,0.4);margin-top:2px}
+
+/* KPI */
+.kpi-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+.kpi-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;position:relative;overflow:hidden;transition:var(--transition)}
+.kpi-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad-main)}
+.kpi-card:hover{border-color:var(--border-v);transform:translateY(-2px);box-shadow:var(--purple-glow)}
+.kpi-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:var(--text-muted);margin-bottom:8px}
+.kpi-val{font-size:27px;font-weight:800;color:var(--text);letter-spacing:-0.03em;line-height:1}
+.kpi-sub{font-size:10px;color:var(--text-muted);margin-top:5px}
+.kpi-card.hero{background:var(--grad-card);border-color:rgba(139,92,246,0.4)}
+.kpi-card.hero::after{background:rgba(255,255,255,0.15)}
+.kpi-card.hero .kpi-lbl{color:rgba(255,255,255,0.5)}
+.kpi-card.hero .kpi-val{color:#fff}
+.kpi-card.hero .kpi-sub{color:rgba(255,255,255,0.45)}
+
+/* Grids */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:20px}
+.four-col{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.col-6040{display:grid;grid-template-columns:3fr 2fr;gap:16px;margin-bottom:16px}
+
+/* Cards */
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;transition:var(--transition)}
+.card:hover{border-color:var(--border-v-dim)}
+.card-title{font-size:12px;font-weight:800;color:var(--text);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px;padding-bottom:11px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.card-badge{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;border-radius:20px;background:var(--purple-dim);color:var(--purple-light);border:1px solid var(--border-v)}
+
+/* Feature Cards */
+.feat-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;transition:var(--transition);position:relative;overflow:hidden}
+.feat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad-main);transform:scaleX(0);transform-origin:left;transition:var(--transition)}
+.feat-card:hover{border-color:var(--border-v);transform:translateY(-3px);box-shadow:var(--purple-glow)}
+.feat-card:hover::before{transform:scaleX(1)}
+.feat-icon{width:40px;height:40px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;background:var(--grad-subtle);border:1px solid var(--border-v);margin-bottom:12px}
+.feat-icon svg{width:20px;height:20px;stroke:var(--purple-light);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.feat-name{font-size:13px;font-weight:800;color:var(--text);margin-bottom:4px;letter-spacing:-0.01em}
+.feat-spec{font-size:10px;font-weight:600;color:var(--purple-light);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px}
+.feat-desc{font-size:11.5px;color:var(--text-muted);line-height:1.6}
+
+/* Design block */
+.design-block{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:26px;margin-bottom:16px}
+.design-block h3{font-size:13px;font-weight:800;color:var(--text);margin-bottom:10px}
+.design-block p{font-size:12px;color:var(--text-muted);line-height:1.65;margin-bottom:8px}
+.design-block p:last-child{margin-bottom:0}
+
+/* Tables */
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12px}
+thead th{font-size:9px;text-transform:uppercase;letter-spacing:0.13em;color:var(--text-muted);font-weight:700;padding:9px 11px;text-align:left;background:var(--bg-raised);border-bottom:1px solid var(--border)}
+thead th.r{text-align:right}
+tbody td{padding:9px 11px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top;transition:var(--transition)}
+tbody td.r{text-align:right;font-weight:600;font-family:var(--font-mono);font-size:11.5px}
+tbody tr:hover td{background:var(--purple-dim)}
+tbody tr.sec-row td{background:var(--bg-raised);font-size:9px;text-transform:uppercase;letter-spacing:0.13em;color:var(--purple-light);padding:7px 11px;font-weight:800}
+tbody tr.tot-row td{font-weight:800;color:var(--text);background:var(--bg-raised);border-top:1px solid var(--border-v);font-size:12.5px}
+tbody tr.gst-row td{color:var(--text-muted);font-size:11px;background:var(--bg-raised)}
+.desc-cell{font-size:11px;color:var(--text-muted);line-height:1.5;max-width:460px}
+.item-name{font-weight:700;color:var(--text);font-size:12px;margin-bottom:3px}
+
+/* Total Hero */
+.total-hero{border-radius:var(--radius);padding:24px 30px;display:flex;align-items:center;justify-content:space-between;margin-top:20px;position:relative;overflow:hidden}
+.total-hero::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.04)}
+.total-hero-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.17em;color:rgba(255,255,255,0.5);margin-bottom:5px}
+.total-hero-name{font-size:13px;font-weight:500;color:rgba(255,255,255,0.65)}
+.total-hero-amount{font-size:33px;font-weight:800;color:#fff;letter-spacing:-0.04em}
+.total-hero-note{font-size:9px;color:rgba(255,255,255,0.38);margin-top:3px}
+
+/* Scope / Hbar */
+.scope-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.scope-item{display:flex;align-items:flex-start;gap:9px;padding:11px;border-radius:var(--radius-sm);background:var(--bg-raised);border:1px solid var(--border)}
+.scope-dot{width:7px;height:7px;border-radius:50%;background:var(--purple);flex-shrink:0;margin-top:3px}
+.scope-txt{font-size:11px;font-weight:700;color:var(--text)}
+.scope-sub{font-size:10px;color:var(--text-muted)}
+.hbar-list{display:flex;flex-direction:column;gap:12px}
+.hbar-row{display:flex;flex-direction:column;gap:4px}
+.hbar-meta{display:flex;justify-content:space-between;align-items:baseline}
+.hbar-lbl{font-size:11px;font-weight:500;color:var(--text-muted)}
+.hbar-val{font-size:11px;font-weight:800;color:var(--purple-bright);font-family:var(--font-mono)}
+.hbar-track{height:6px;border-radius:3px;background:var(--border);overflow:hidden}
+.hbar-fill{height:100%;border-radius:3px;transition:width 700ms cubic-bezier(0.4,0,0.2,1)}
+
+.footer{border-top:1px solid var(--border);padding:16px 36px;display:flex;justify-content:space-between;align-items:center;margin-top:24px}
+.footer-l1{font-size:12px;font-weight:800;color:var(--text-muted);letter-spacing:-0.01em}
+.footer-l1 span{color:var(--purple-light)}
+.footer-ref{font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.1em}
+
+@media(max-width:900px){
+.main,.header,.footer,.nav{padding-left:16px;padding-right:16px}
+.kpi-strip,.four-col{grid-template-columns:1fr 1fr}
+.two-col,.col-6040{grid-template-columns:1fr}
+.three-col{grid-template-columns:1fr 1fr}
+.hero-banner{flex-direction:column;gap:16px;text-align:center}
+.hero-right{text-align:center}
+}
+</style>
+</head>
+<body>
+<div class="top-bar"></div>
+<div class="header">
+  <div class="header-left">
+    <div class="header-eyebrow">Layer 1 Group — Turnkey Solution</div>
+    <div class="header-title">Avirat Theatre · Fourth Floor · Torrent Pharmaceuticals</div>
+  </div>
+  <div class="header-right">
+    <div class="header-meta">Shilaj, Ahmedabad<br>Ref: L1-TPH-AVIRAT-2026</div>
+    <div class="theme-toggle" onclick="toggleTheme()">
+      <span id="theme-icon">☀️</span>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <span id="theme-label">Light</span>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="nav-tab active" onclick="showTab('av',this)">AV System</div>
+  <div class="nav-tab" onclick="showTab('auto',this)">Automation</div>
+  <div class="nav-tab" onclick="showTab('int',this)">Interior Works</div>
+  <div class="nav-tab" onclick="showTab('home',this)">Overview</div>
+</div>
+
+<div class="main">
+
+<!-- ════════════════════════════════════ -->
+<!--           AV SYSTEM                 -->
+<!-- ════════════════════════════════════ -->
+<div class="tab-panel active" id="tab-av">
+  <div class="hero-banner" style="background:var(--grad-av)">
+    <div class="hero-left">
+      <div class="hero-eyebrow">AV & Immersive</div>
+      <div class="hero-title">Audio-Visual System</div>
+      <div class="hero-sub">Display · Audio · Presentation · Wireless Collaboration</div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-amount">₹71,66,002</div>
+      <div class="hero-amount-sub">Including 18% GST</div>
+    </div>
+  </div>
+
+  <div class="sub-nav">
+    <button class="sub-tab active" onclick="showSub('av-di',this)">Design Intent</button>
+    <button class="sub-tab" onclick="showSub('av-boq',this)">Bill of Quantities</button>
+  </div>
+
+  <!-- AV Design Intent -->
+  <div class="sub-panel active" id="sub-av-di">
+    <div class="kpi-strip">
+      <div class="kpi-card"><div class="kpi-lbl">Display Size</div><div class="kpi-val">163″</div><div class="kpi-sub">LG All-in-One LED</div></div>
+      <div class="kpi-card"><div class="kpi-lbl">Seating Capacity</div><div class="kpi-val">28</div><div class="kpi-sub">Tiered theatre layout</div></div>
+      <div class="kpi-card"><div class="kpi-lbl">Audio Channels</div><div class="kpi-val">LCR + Sub</div><div class="kpi-sub">Line array configuration</div></div>
+      <div class="kpi-card"><div class="kpi-lbl">Wireless Presentation</div><div class="kpi-val">BYOD</div><div class="kpi-sub">Crestron AirMedia</div></div>
+    </div>
+
+    <div class="four-col">
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <div class="feat-name">163″ LED Display</div>
+        <div class="feat-spec">LG LAPA163</div>
+        <div class="feat-desc">All-in-One direct-view LED wall, ~1.58 mm pixel pitch, 4K UHD seamless canvas. Built-in webOS controller, HDR10, front-serviceable modules. No external processor needed.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 010 7.07"/><path d="M19.07 4.93a10 10 0 010 14.14"/></svg></div>
+        <div class="feat-name">Professional Audio</div>
+        <div class="feat-spec">Line Array + Subwoofer</div>
+        <div class="feat-desc">Dual Vyper-102 line array modules for uniform SPL across tiered seating. Twin KU210 subwoofers (35 Hz–150 Hz). K104 4-channel amplifier with onboard DSP.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></div>
+        <div class="feat-name">Wireless Microphone</div>
+        <div class="feat-spec">Sennheiser EW-D ME3</div>
+        <div class="feat-desc">Digital wireless headset on 1.9 GHz licence-free band, AES-256 encryption, &lt; 1.9 ms latency, 100 m range. Auto-frequency coordination for 64 channels.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><circle cx="12" cy="10" r="2"/></svg></div>
+        <div class="feat-name">Digital Podium</div>
+        <div class="feat-spec">EIS-Touch ET-500 XA</div>
+        <div class="feat-desc">Integrated lectern with 21.5″ capacitive touchscreen, embedded Windows PC, 8MP document camera, motorised height adjust. HDMI, USB, LAN connectivity.</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="design-block">
+        <h3>Display System</h3>
+        <p>The theatre features an LG LAPA163 All-in-One LED display — a 163-inch direct-view LED wall delivering a seamless, bezel-free 4K UHD canvas. Pixel pitch of approximately 1.58 mm ensures sharp text and vivid imagery from the nearest executive seating row at 3.4 metres. The all-in-one form factor integrates the LED cabinet, controller, and power supply into a single package, eliminating external video processors.</p>
+        <p>Content sources include the Crestron AirMedia wireless presentation system for BYOD connectivity, the digital podium's integrated PC, and any HDMI/USB-C connected devices routed through the Crestron switcher.</p>
+      </div>
+      <div class="design-block">
+        <h3>Audio System</h3>
+        <p>Two A-Array Vyper-102 compact line array modules are mounted on either side of the screen, providing uniform SPL coverage across the tiered seating from Level +100 mm to Level +400 mm. The tight vertical pattern control minimises ceiling and rear-wall reflections.</p>
+        <p>Low-frequency reinforcement comes from dual KU210 subwoofers at floor level, delivering extended bass response down to 40 Hz for cinematic content. The K104 four-channel amplifier drives the system with DSP processing for crossover, EQ, delay alignment, and limiter protection.</p>
+        <p>A Sennheiser EW-D ME3 wireless headset microphone provides broadcast-quality speech pickup with freedom of movement around the podium area.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- AV BOQ -->
+  <div class="sub-panel" id="sub-av-boq">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th style="width:30px">#</th><th>Item</th><th>Description</th><th>Model</th><th style="width:40px">Qty</th><th class="r">Unit Rate (₹)</th><th class="r">Total (₹)</th></tr></thead>
+        <tbody>
+          <tr class="sec-row"><td colspan="7">Display System</td></tr>
+          <tr><td>1</td><td><div class="item-name">163″ All-in-One LED Display</div></td><td class="desc-cell">LG LAPA163 All-in-One LED signage display, 163-inch diagonal, direct-view LED with ~1.58 mm pixel pitch, 4K UHD (3840×2160), 500 nit, 100,000:1 contrast, built-in webOS SoC, integrated PSU, wall-mount frame. HDR10, HDMI 2.0 ×3, USB, LAN/Wi-Fi. Front-serviceable LED modules.</td><td>LG LAPA163</td><td>1</td><td class="r">34,37,500</td><td class="r">34,37,500</td></tr>
+          <tr class="sec-row"><td colspan="7">Presentation</td></tr>
+          <tr><td>2</td><td><div class="item-name">Digital Podium</div></td><td class="desc-cell">EIS-Touch ET-500 XA interactive digital podium, 21.5″ FHD capacitive touchscreen, Windows 11 OPS PC (i5/8GB/256GB SSD), 8MP document camera, gooseneck mic, motorised height (850–1150 mm), HDMI-IN ×2, HDMI-OUT, USB 3.0 ×4, RJ-45, audio I/O. Powder-coated steel, cable management, locking casters.</td><td>ET-500 XA</td><td>1</td><td class="r">4,63,125</td><td class="r">4,63,125</td></tr>
+          <tr class="sec-row"><td colspan="7">Audio System</td></tr>
+          <tr><td>3</td><td><div class="item-name">Line Array Speaker</div></td><td class="desc-cell">A-Array Vyper-102 compact passive line array, 2-way with dual 10″ Kevlar LF + 1.4″ HF compression driver, 60°×10° dispersion, 65 Hz–20 kHz, 99 dB sensitivity, 400W RMS / 1600W peak, Speakon NL4, integrated rigging (0°–10° splay), marine birch plywood, polyurea coating.</td><td>Vyper-102</td><td>2</td><td class="r">3,75,000</td><td class="r">7,50,000</td></tr>
+          <tr><td>4</td><td><div class="item-name">Power Amplifier</div></td><td class="desc-cell">K104 4-channel Class-D amplifier, 4×2,500W @ 4Ω, 96 kHz/56-bit DSP (FIR/IIR, crossover, 10-band PEQ, delay, limiter, compressor), Dante™, AES3, balanced XLR in, Speakon out, OLED display, Ethernet, 2U rack, universal AC, variable-speed cooling.</td><td>K104</td><td>1</td><td class="r">8,62,500</td><td class="r">8,62,500</td></tr>
+          <tr><td>5</td><td><div class="item-name">Subwoofer</div></td><td class="desc-cell">KU210 dual 10″ high-excursion subwoofer, band-pass, 35–150 Hz, 98 dB sensitivity, 800W RMS / 3200W peak, Speakon NL4, 18 mm marine birch, internal bracing, polyurea finish, recessed handles, M20 pole-mount, rubber feet, M10 rigging points.</td><td>KU210</td><td>2</td><td class="r">2,50,000</td><td class="r">5,00,000</td></tr>
+          <tr><td>6</td><td><div class="item-name">Wireless Headset Microphone</div></td><td class="desc-cell">Sennheiser EW-D ME3 digital wireless — EW-D SK bodypack (1.9 GHz, 12 hrs), ME 3-II cardioid headset, EW-D EM receiver (XLR + 6.3 mm out). 64-channel coordination, AES-256, &lt; 1.9 ms latency, 100 m range. Rackmount kit, PSU, antenna cables included.</td><td>EWD-ME3</td><td>1</td><td class="r">59,758</td><td class="r">59,758</td></tr>
+          <tr class="tot-row"><td colspan="5"></td><td class="r">Subtotal</td><td class="r">60,72,883</td></tr>
+          <tr class="gst-row"><td colspan="5"></td><td class="r">GST @ 18%</td><td class="r">10,93,119</td></tr>
+          <tr class="tot-row"><td colspan="5"></td><td class="r" style="font-size:13px">Total</td><td class="r" style="font-size:13px">71,66,002</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="total-hero" style="background:var(--grad-av)">
+      <div><div class="total-hero-lbl">AV System Total</div><div class="total-hero-name">Display · Audio · Podium · Wireless Microphone</div></div>
+      <div style="text-align:right"><div class="total-hero-amount">₹71,66,002</div><div class="total-hero-note">Including 18% GST</div></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════ -->
+<!--           AUTOMATION                -->
+<!-- ════════════════════════════════════ -->
+<div class="tab-panel" id="tab-auto">
+  <div class="hero-banner" style="background:var(--grad-auto)">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Automation & Control</div>
+      <div class="hero-title">Crestron + Lutron Integrated System</div>
+      <div class="hero-sub">AV Control · Wireless Presentation · Scene Lighting · Occupancy</div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-amount">₹13,83,432</div>
+      <div class="hero-amount-sub">Including 18% GST</div>
+    </div>
+  </div>
+
+  <div class="sub-nav">
+    <button class="sub-tab active" onclick="showSub('auto-di',this)">Design Intent</button>
+    <button class="sub-tab" onclick="showSub('auto-boq',this)">Bill of Quantities</button>
+  </div>
+
+  <!-- Auto Design Intent -->
+  <div class="sub-panel active" id="sub-auto-di">
+    <div class="kpi-strip">
+      <div class="kpi-card"><div class="kpi-lbl">Control Platform</div><div class="kpi-val">Crestron</div><div class="kpi-sub">CP4-R 4-Series Processor</div></div>
+      <div class="kpi-card"><div class="kpi-lbl">Lighting Platform</div><div class="kpi-val">Lutron</div><div class="kpi-sub">HomeWorks QS + DALI</div></div>
+      <div class="kpi-card"><div class="kpi-lbl">Touch Interface</div><div class="kpi-val">10.1″</div><div class="kpi-sub">TS-1080-B Tabletop</div></div>
+      <div class="kpi-card"><div class="kpi-lbl">Scene Control</div><div class="kpi-val">Pico + OCC</div><div class="kpi-sub">Keypads + Occupancy Sensors</div></div>
+    </div>
+
+    <div class="three-col">
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3"/><path d="M15 1v3"/><path d="M9 20v3"/><path d="M15 20v3"/><path d="M20 9h3"/><path d="M20 14h3"/><path d="M1 9h3"/><path d="M1 14h3"/></svg></div>
+        <div class="feat-name">Crestron AirMedia</div>
+        <div class="feat-spec">AM3-212-I Wireless Presentation</div>
+        <div class="feat-desc">BYOD wireless casting — AirPlay, Miracast, Google Cast, native app. Dual 4K60 outputs, USB-C fallback, Zoom/Teams/WebEx bridge. Up to 4 concurrent presenters, QR pairing.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+        <div class="feat-name">4-Series Processor</div>
+        <div class="feat-spec">CP4-R Central Controller</div>
+        <div class="feat-desc">Quad-core control system orchestrating display, audio, lighting, and switching. 8× IR/serial, 8× relay, 4× COM, BACnet/IP, Crestron Connected® cloud. One-touch scene recall.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg></div>
+        <div class="feat-name">10.1″ Touch Panel</div>
+        <div class="feat-spec">TS-1080-B Tabletop</div>
+        <div class="feat-desc">1920×1200 IPS, proximity wake, auto-brightness, custom room UI. Scene buttons: Presentation / Cinema / Discussion / All On / All Off. PoE powered at podium.</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="design-block">
+        <h3>Control Architecture</h3>
+        <p>The Crestron CP4-R processor orchestrates all AV sources, display power, audio levels, lighting scenes, and presentation switching from a unified platform. The TS-1080-B touch panel at the podium provides one-touch scene recall. The AirMedia AM3-212-I gateway enables seamless BYOD content sharing to the 163″ display without cables.</p>
+      </div>
+      <div class="design-block">
+        <h3>Lighting Control — Lutron HomeWorks QS</h3>
+        <p>All theatre lighting operates on the Lutron HomeWorks QS platform with DALI digital dimming. The QS processor communicates with the DALI module to control each luminaire individually or in grouped zones — from full wash for cleaning, to "Presenter + Screen" with aisle markers only, to full "Cinema" blackout.</p>
+        <p>Two Pico wireless keypads (entry + podium) provide quick scene recall. Two ceiling occupancy sensors enable auto-on/auto-off (default 20-minute vacancy timeout) for energy efficiency.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Auto BOQ -->
+  <div class="sub-panel" id="sub-auto-boq">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th style="width:30px">#</th><th>Item</th><th>Description</th><th>Model</th><th style="width:40px">Qty</th><th class="r">Unit Rate (₹)</th><th class="r">Total (₹)</th></tr></thead>
+        <tbody>
+          <tr class="sec-row"><td colspan="7">Crestron Control & Presentation</td></tr>
+          <tr><td>1</td><td><div class="item-name">Wireless Presentation Kit</div></td><td class="desc-cell">Crestron AirMedia AM3-212-I BYOD system. AirPlay, Miracast, Google Cast, native app. Dual HDMI 4K60 out, USB-C fallback, Zoom/Teams/WebEx bridge, 802.11ac Wi-Fi, GbE, PoE+, QR pairing, 4 on-screen presenters, 1U half-rack, Crestron Connected®.</td><td>AM3-212-I</td><td>1</td><td class="r">3,40,800</td><td class="r">3,40,800</td></tr>
+          <tr><td>2</td><td><div class="item-name">4-Series Control Processor</div></td><td class="desc-cell">Crestron CP4-R, quad-core ARM, 2 GB RAM, 8 GB storage, .NET/HTML5 programming, Cresnet® master, 8× IR/serial, 8× relay, 8× Versiport, 4× COM, GbE + PoE+, BACnet/IP, Crestron Connected®, 1U rack. Controls display, audio, lighting integration, switching.</td><td>CP4-R</td><td>1</td><td class="r">1,90,650</td><td class="r">1,90,650</td></tr>
+          <tr><td>3</td><td><div class="item-name">10.1″ Touch Panel</div></td><td class="desc-cell">Crestron TS-1080-B, 10.1″ 1920×1200 IPS, 10-point capacitive, proximity wake, auto-brightness, 2× mics, speaker, USB-C, PoE, adjustable kickstand, custom room UI, matte black anti-fingerprint glass. Primary room control interface at podium.</td><td>TS-1080-B</td><td>1</td><td class="r">3,13,250</td><td class="r">3,13,250</td></tr>
+          <tr class="sec-row"><td colspan="7">Lutron Lighting Control</td></tr>
+          <tr><td>4</td><td><div class="item-name">HomeWorks QS Processor</div></td><td class="desc-cell">Lutron HomeWorks QS processor, manages up to 64 DALI/DALI-2 luminaires, 100+ scene presets, astronomical timeclock, conditional logic, Crestron integration (RS-232/IP), DIN-rail mount, 24V DC. 7 luminaire zones configured.</td><td>HW QS</td><td>1</td><td class="r">1,06,900</td><td class="r">1,06,900</td></tr>
+          <tr><td>5</td><td><div class="item-name">QS Power Supply</div></td><td class="desc-cell">Lutron QS power supply module, DIN-rail, regulated 24V DC to processor + DALI module + QSM. Universal AC (100–277V), surge protection, LED status.</td><td>QS PSU</td><td>1</td><td class="r">24,900</td><td class="r">24,900</td></tr>
+          <tr><td>6</td><td><div class="item-name">Panel & Accessories</div></td><td class="desc-cell">Lutron QS panel enclosure, DIN rail, blanking plates, cable glands, terminals. IP30 sheet-steel (RAL 7035), sized for processor + DALI + PSU + QSM with 30% spare. Labelling, earth bonding, ventilation.</td><td>QS Panel</td><td>1</td><td class="r">25,000</td><td class="r">25,000</td></tr>
+          <tr><td>7</td><td><div class="item-name">DALI Integration Module</div></td><td class="desc-cell">Lutron QS DALI module, 1× DALI bus (64 addresses), auto-discovery, fade rates, emergency test, lamp/ballast status reporting, DIN-rail, QS link. Per-fixture dimming and zone grouping.</td><td>QS-DALI</td><td>1</td><td class="r">1,21,500</td><td class="r">1,21,500</td></tr>
+          <tr><td>8</td><td><div class="item-name">QS Link Device</div></td><td class="desc-cell">Lutron QSM wired link module, extends QS network via Cat5e/Cat6 (600 m), DIN-rail, QS bus powered, daisy-chain/star topology, auto-negotiation.</td><td>QSM</td><td>1</td><td class="r">18,000</td><td class="r">18,000</td></tr>
+          <tr><td>9</td><td><div class="item-name">Pico Wireless Keypad</div></td><td class="desc-cell">Lutron Pico 3BRL, 3-button + raise/lower, 434 MHz Clear Connect® RF, CR2032 (~10-year), wall/pedestal mount, engraved legends, matte white. Scene recall + manual dimming override. 9 m range.</td><td>Pico 3BRL</td><td>2</td><td class="r">5,300</td><td class="r">10,600</td></tr>
+          <tr><td>10</td><td><div class="item-name">Ceiling Occupancy Sensor</div></td><td class="desc-cell">Lutron Radio Powr Savr™ ceiling sensor, PIR + ultrasonic dual-tech, 360° FOV, adjustable sensitivity/timeout (5–30 min), Clear Connect® wireless, CR123A (~10-year), flush Ø 76 mm. Auto-on / auto-off vacancy.</td><td>OCC Sensor</td><td>2</td><td class="r">10,400</td><td class="r">20,800</td></tr>
+          <tr class="tot-row"><td colspan="5"></td><td class="r">Subtotal</td><td class="r">11,72,400</td></tr>
+          <tr class="gst-row"><td colspan="5"></td><td class="r">GST @ 18%</td><td class="r">2,11,032</td></tr>
+          <tr class="tot-row"><td colspan="5"></td><td class="r" style="font-size:13px">Total</td><td class="r" style="font-size:13px">13,83,432</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="total-hero" style="background:var(--grad-auto)">
+      <div><div class="total-hero-lbl">Automation Total</div><div class="total-hero-name">Crestron Control · Lutron Lighting · Occupancy · Keypads</div></div>
+      <div style="text-align:right"><div class="total-hero-amount">₹13,83,432</div><div class="total-hero-note">Including 18% GST</div></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════ -->
+<!--          INTERIOR WORKS             -->
+<!-- ════════════════════════════════════ -->
+<div class="tab-panel" id="tab-int">
+  <div class="hero-banner" style="background:var(--grad-int)">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Interior Works</div>
+      <div class="hero-title">Finishes · Furniture · Lighting · Ceiling</div>
+      <div class="hero-sub">Wall Treatments · Tiered Flooring · Theatre Seating · DALI Fixtures · Lounge</div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-amount">₹63,96,880</div>
+      <div class="hero-amount-sub">Excluding GST</div>
+    </div>
+  </div>
+
+  <div class="sub-nav">
+    <button class="sub-tab active" onclick="showSub('int-di',this)">Design Intent</button>
+    <button class="sub-tab" onclick="showSub('int-boq',this)">Bill of Quantities</button>
+  </div>
+
+  <!-- Interior Design Intent -->
+  <div class="sub-panel active" id="sub-int-di">
+    <div class="kpi-strip">
+      <div class="kpi-card"><div class="kpi-lbl">Wall Finishes</div><div class="kpi-val">1,256</div><div class="kpi-sub">Sq.Ft. — Veneer · Fluted · Cloth</div></div>
+      <div class="kpi-card"><div class="kpi-lbl">Tiered Floor Area</div><div class="kpi-val">1,553</div><div class="kpi-sub">Sq.Ft. — 4 levels · MS framework</div></div>
+      <div class="kpi-card"><div class="kpi-lbl">Carpet Area</div><div class="kpi-val">2,112</div><div class="kpi-sub">Sq.Ft. — NZ Wool cut pile</div></div>
+      <div class="kpi-card"><div class="kpi-lbl">Light Fixtures</div><div class="kpi-val">52 + 100m</div><div class="kpi-sub">52 fixtures + 100 running metres</div></div>
+    </div>
+
+    <div class="four-col">
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="feat-name">Wall Finishes</div>
+        <div class="feat-spec">Veneer · Fluted · Cloth</div>
+        <div class="feat-desc">Three wall treatments: flat veneer for display walls, fluted veneer for acoustic diffusion, cloth-wrapped panels over mineral wool for broadband absorption (NRC ≥ 0.65).</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M2 20h20"/><path d="M5 20V8l7-5 7 5v12"/><path d="M9 20v-4h6v4"/></svg></div>
+        <div class="feat-name">Tiered Floor System</div>
+        <div class="feat-spec">4 Levels · +100 to +400 mm</div>
+        <div class="feat-desc">MS RHS framework at 600 mm c/c, anchored to slab, 18 mm ply deck with carpet. Cavities for AV, power, and lighting cable infrastructure across all tiers.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0018 8 6 6 0 006 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 018.91 14"/></svg></div>
+        <div class="feat-name">DALI Lighting</div>
+        <div class="feat-spec">52 Fixtures + 100m Profiles</div>
+        <div class="feat-desc">Recessed ceiling profiles, 7W/15W downlights, 3W narrow accents, wall washers, 25W/m architectural profiles, 10W/m cabinet strips. All 3000K, CRI ≥ 90.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div class="feat-name">Furniture & Seating</div>
+        <div class="feat-spec">Theatre + Breakout Lounge</div>
+        <div class="feat-desc">28 SeatLab push-back recliners, 3+2+1 seater sofa group, 6 bar tables, centre and side tables. Veneer and powder-coated MS construction.</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="design-block">
+        <h3>Design Language</h3>
+        <p>The interior follows a warm, premium corporate aesthetic — natural wood veneer and fluted timber panelling against dark theatre walls, with integrated greenery in foyer and transition zones. The palette: oak-tone veneer, dark charcoal carpet, light timber ceiling baffles with recessed lighting, and curated lounge furniture in the breakout space.</p>
+      </div>
+      <div class="design-block">
+        <h3>Floating Ceiling & Lighting</h3>
+        <p>The suspended timber-baffle ceiling is the theatre's signature element — linear baffles with integrated LED profiles between louvers creating rhythmic light and shadow patterns. Deep recessed profiles (30W/m) between baffles provide ambient wash, while profile lights (25W/m) mark cove edges and step risers. All fixtures are DALI-2 addressable for scene control via the Lutron HomeWorks QS system.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interior BOQ -->
+  <div class="sub-panel" id="sub-int-boq">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th style="width:30px">#</th><th>Item</th><th>Description</th><th style="width:50px">UOM</th><th style="width:40px">Qty</th><th class="r">Rate (₹)</th><th class="r">Total (₹)</th></tr></thead>
+        <tbody>
+          <tr class="sec-row"><td colspan="7">Wall Finishes</td></tr>
+          <tr><td>1</td><td><div class="item-name">Wall Panelling — Veneer</div></td><td class="desc-cell">Natural wood veneer on 18 mm BWR ply framework at 600 mm c/c, 0.5 mm cross-grain veneer, sanded 180–240 grit, 2 coats clear PU matt/satin. Flush joints, matching lipping.</td><td>Sq.Ft.</td><td>300</td><td class="r">625</td><td class="r">1,87,500</td></tr>
+          <tr><td>2</td><td><div class="item-name">Wall Panelling — Fluted Veneer</div></td><td class="desc-cell">Fluted (reeded) veneer panelling on 18 mm BWR ply framework. CNC-routed timber battens (~20W×10D mm, 25 mm c/c), natural veneer + 2 coats PU. Acoustic diffusion in theatre zone.</td><td>Sq.Ft.</td><td>388</td><td class="r">625</td><td class="r">2,42,500</td></tr>
+          <tr><td>3</td><td><div class="item-name">Wall Panelling — Cloth Finish</div></td><td class="desc-cell">Acoustic panel: 2.5″×1.5″ aluminium RHS at 600 mm c/c, 8 mm ply sub-base, 50 mm mineral wool (48 kg/m³), FR acoustically transparent fabric (Class 1 BS 5867). NRC ≥ 0.65. Theatre rear/side walls.</td><td>Sq.Ft.</td><td>568</td><td class="r">750</td><td class="r">4,26,000</td></tr>
+
+          <tr class="sec-row"><td colspan="7">Fabricated Raised Floor System</td></tr>
+          <tr><td>4</td><td><div class="item-name">Raised Floor — 400 mm</div></td><td class="desc-cell">2″×1″ MS RHS (galv./primed) at 600 mm c/c, expansion-anchored, 18 mm BWR ply deck, cabling/insulation cavity, timber/aluminium nosing at tier edges.</td><td>Sq.Ft.</td><td>570</td><td class="r">750</td><td class="r">4,27,500</td></tr>
+          <tr><td>5</td><td><div class="item-name">Raised Floor — 300 mm</div></td><td class="desc-cell">Spec per Item 4, 300 mm pedestal height. MS RHS framework, ply deck, cabling cavity, nosing.</td><td>Sq.Ft.</td><td>147</td><td class="r">750</td><td class="r">1,10,250</td></tr>
+          <tr><td>6</td><td><div class="item-name">Raised Floor — 200 mm</div></td><td class="desc-cell">Spec per Item 4, 200 mm pedestal. Largest tier — executive seating + breakout transition.</td><td>Sq.Ft.</td><td>673</td><td class="r">750</td><td class="r">5,04,750</td></tr>
+          <tr><td>7</td><td><div class="item-name">Raised Floor — 100 mm</div></td><td class="desc-cell">Spec per Item 4, 100 mm pedestal. First step-up from lobby (±0.0 mm).</td><td>Sq.Ft.</td><td>163</td><td class="r">750</td><td class="r">1,22,250</td></tr>
+
+          <tr class="sec-row"><td colspan="7">Flooring</td></tr>
+          <tr><td>8</td><td><div class="item-name">Carpet — NZ Wool Cut Pile</div></td><td class="desc-cell">100% NZ wool, 12 mm pile, 80 oz/yd², 8 mm PU underlay (total 20 mm), density ≥ 4,500 g/m², Class 1 ASTM E648, smoke ≤ 450 ASTM E662. SR-998/505 adhesive, trimmed edges, aligned seams, level-matched. Dark charcoal.</td><td>Sq.Ft.</td><td>2,112</td><td class="r">190</td><td class="r">4,01,280</td></tr>
+
+          <tr class="sec-row"><td colspan="7">Theatre Seating</td></tr>
+          <tr><td>9</td><td><div class="item-name">SeatLab Push-Back Recliner</div></td><td class="desc-cell">Heavy-gauge steel frame (matte black), HR moulded PU foam (40–45 kg/m³), PU leatherette (>100K Martindale), flip-up armrests + cup holders, gravity push-back recline (self-return), floor-bolt plates. W 520, C/C 550, D 480, backrest H 750 mm. BS 5852 / CA TB 117.</td><td>Nos</td><td>28</td><td class="r">19,000</td><td class="r">5,32,000</td></tr>
+
+          <tr class="sec-row"><td colspan="7">Storage & Cabinetry</td></tr>
+          <tr><td>10</td><td><div class="item-name">Low-Height Storage — Type A</div></td><td class="desc-cell">14′-6″W×2′D×2′H + 5′W×2′D×2′H, 18 mm BWR ply, veneer + PU matt. Soft-close hinges (Hettich/Hafele), full-extension slides (30 kg), adjustable shelves, cable grommets.</td><td>Lot</td><td>1</td><td class="r">72,000</td><td class="r">72,000</td></tr>
+          <tr><td>11</td><td><div class="item-name">Low-Height Storage — Type B</div></td><td class="desc-cell">27′W×1′-4″D×2′H, 18 mm BWR ply, veneer + PU matt. Vertical partitions ≤ 900 mm c/c, soft-close hinges, adjustable shelving, recessed plinth. Display area wall.</td><td>Lot</td><td>1</td><td class="r">68,000</td><td class="r">68,000</td></tr>
+          <tr><td>12</td><td><div class="item-name">Low-Height Storage — Type C</div></td><td class="desc-cell">11′W×2′D×2′-6″H, 18 mm BWR ply, veneer + PU matt. Open shelving (upper) + closed shutters (lower), European hinges, telescopic slides. Breakout space.</td><td>Lot</td><td>1</td><td class="r">39,600</td><td class="r">39,600</td></tr>
+          <tr><td>13</td><td><div class="item-name">Cupboard / Display Unit</div></td><td class="desc-cell">Full/mid-height unit, 18 mm BWR ply, veneer + PU matt. Internal laminate shelves, soft-close hinges, magnetic catches, adjustable pins, LED strip provision. Storage of AV accessories and supplies.</td><td>Lot</td><td>1</td><td class="r">1,79,600</td><td class="r">1,79,600</td></tr>
+
+          <tr class="sec-row"><td colspan="7">Furniture — Breakout Lounge</td></tr>
+          <tr><td>14</td><td><div class="item-name">Bar Table — 2′-6″ Dia</div></td><td class="desc-cell">762 mm Ø veneer top (18 mm ply + PU matt), 25 mm bullnose edge. 76 mm MS pipe column, 400 mm Ø base plate, powder-coated matte black RAL 9005, levelling glides. H: 1,050 mm.</td><td>Nos</td><td>6</td><td class="r">28,000</td><td class="r">1,68,000</td></tr>
+          <tr><td>15</td><td><div class="item-name">2-Seater Sofa</div></td><td class="desc-cell">~1,400W×800D×750H mm, kiln-dried hardwood frame, sinuous springs, HR PU foam (36–40 kg/m³), fibre-conjugate back. FR woven fabric (≥ 40K Martindale, grey/charcoal), removable covers. Tapered legs, felt pads.</td><td>Nos</td><td>2</td><td class="r">90,000</td><td class="r">1,80,000</td></tr>
+          <tr><td>16</td><td><div class="item-name">3-Seater Sofa</div></td><td class="desc-cell">~2,100W×800D×750H mm, spec per Item 15 with centre cross-brace. Hardwood frame, sinuous springs, HR foam, FR fabric, removable covers.</td><td>Nos</td><td>2</td><td class="r">1,30,000</td><td class="r">2,60,000</td></tr>
+          <tr><td>17</td><td><div class="item-name">1-Seater Accent Chair</div></td><td class="desc-cell">~750W×780D×750H mm, hardwood frame, sinuous springs, HR foam, FR fabric (accent colour). Curved backrest, tapered legs, felt pads.</td><td>Nos</td><td>1</td><td class="r">35,000</td><td class="r">35,000</td></tr>
+          <tr><td>18</td><td><div class="item-name">Centre Table</div></td><td class="desc-cell">~1,200L×600W×420H mm, veneer top (18 mm ply + PU matt), timber edge. MS pipe frame (38 mm sq), matte black, cross-braces, levelling glides.</td><td>Nos</td><td>2</td><td class="r">20,000</td><td class="r">40,000</td></tr>
+          <tr><td>19</td><td><div class="item-name">Side Table</div></td><td class="desc-cell">~500L×500W×550H mm, veneer top (18 mm ply + PU matt), timber edge. 32 mm MS round pipe base, matte black, levelling glides.</td><td>Nos</td><td>2</td><td class="r">14,000</td><td class="r">28,000</td></tr>
+
+          <tr class="sec-row"><td colspan="7">Doors</td></tr>
+          <tr><td>20</td><td><div class="item-name">Flush Door — 4′ Wide</div></td><td class="desc-cell">1,220W×2,134H×40 mm solid-core flush, veneer + PU satin, 125×75 mm hardwood frame. 3× SS hinges, mortise lock + SS lever, concealed closer (EN3), acoustic gasket, stopper.</td><td>Nos</td><td>1</td><td class="r">52,000</td><td class="r">52,000</td></tr>
+          <tr><td>21</td><td><div class="item-name">Flush Door — 3′ Wide</div></td><td class="desc-cell">914W×2,134H×35 mm solid-core flush, veneer + PU satin, 100×63 mm frame. SS hinges, mortise lock, lever handle, concealed closer, acoustic gasket.</td><td>Nos</td><td>2</td><td class="r">23,500</td><td class="r">47,000</td></tr>
+
+          <tr class="sec-row"><td colspan="7">Partitions</td></tr>
+          <tr><td>22</td><td><div class="item-name">Wall Partition — Veneer Both Sides</div></td><td class="desc-cell">Non-load-bearing, 2.5″×1.5″ aluminium RHS at 600 mm c/c, floor/ceiling anchored. 18 mm BWR ply + veneer + PU both faces. 50 mm acoustic mineral wool (48 kg/m³) in cavity. Corner trims.</td><td>Lot</td><td>1</td><td class="r">1,52,500</td><td class="r">1,52,500</td></tr>
+
+          <tr class="sec-row"><td colspan="7">Ceiling</td></tr>
+          <tr><td>23</td><td><div class="item-name">Floating Wooden Panel Ceiling</div></td><td class="desc-cell">Suspended linear timber baffles (50W×80D mm, 40–50 mm spacing), galvanised wire hangers + aluminium carriers at 600 mm c/c. Natural stain + 2 coats PU. Integrated LED profile slots. Shadow gap perimeter. All suspension hardware, anti-sway bracing, fire grommets.</td><td>Lot</td><td>1</td><td class="r">4,50,000</td><td class="r">4,50,000</td></tr>
+
+          <tr class="sec-row"><td colspan="7">Lighting Fixtures — DALI Dimmable</td></tr>
+          <tr><td>24</td><td><div class="item-name">Deep Recessed Profile — Louvers</div></td><td class="desc-cell">Recessed aluminium LED profile (anodised black), 30W/m, 3000K, CRI ≥ 90, DALI-2, PMMA diffuser, IP20, 50,000 hr L80. Between ceiling baffles for ambient wash.</td><td>Nos</td><td>12</td><td class="r">10,500</td><td class="r">1,26,000</td></tr>
+          <tr><td>25</td><td><div class="item-name">Recessed Downlight — 7W</div></td><td class="desc-cell">Die-cast LED downlight, 7W COB, 3000K, CRI ≥ 90, 36° beam, DALI-2, Ø 75 mm cut-out, IP20, 50,000 hr L80. Foyer, lobby, transition corridors.</td><td>Nos</td><td>14</td><td class="r">7,600</td><td class="r">1,06,400</td></tr>
+          <tr><td>26</td><td><div class="item-name">Recessed Downlight — 15W</div></td><td class="desc-cell">Die-cast LED downlight, 15W COB, 3000K, CRI ≥ 90, 40° beam, DALI-2, Ø 100 mm cut-out, IP20, 50,000 hr L80. Entry transition, display area, breakout.</td><td>Nos</td><td>12</td><td class="r">8,500</td><td class="r">1,02,000</td></tr>
+          <tr><td>27</td><td><div class="item-name">Narrow Beam Accent — 3W</div></td><td class="desc-cell">Miniature LED accent spot, 3W, 3000K, CRI ≥ 95, 15° beam, DALI, tilt gimbal ±30°, Ø 40 mm, matte black, IP20, 50,000 hr. Display shelving highlights.</td><td>Nos</td><td>6</td><td class="r">7,100</td><td class="r">42,600</td></tr>
+          <tr><td>28</td><td><div class="item-name">Linear Wall Washer</div></td><td class="desc-cell">P230 linear LED wall washer, aluminium, asymmetric optic for even grazing wash, DALI-2, 3000K, CRI ≥ 90, IP20, 50,000 hr. Veneer and fluted panelling surfaces.</td><td>Nos</td><td>8</td><td class="r">7,800</td><td class="r">62,400</td></tr>
+          <tr><td>29</td><td><div class="item-name">Architectural Profile Light</div></td><td class="desc-cell">25W/m LED strip in extruded aluminium profile housing, PMMA frosted diffuser (dot-free linear output), 3000K warm white, CRI ≥ 90, DALI-2 dimmable driver, recessed/surface/pendant configurations, end-caps and joiner kits included, IP20, 50,000 hr L80. Applied as cove lighting along ceiling perimeters, step-edge markers on tiered floor risers, and architectural accent lines.</td><td>Mtrs</td><td>50</td><td class="r">4,500</td><td class="r">2,25,000</td></tr>
+          <tr><td>30</td><td><div class="item-name">Cabinet Profile Light</div></td><td class="desc-cell">10W/m miniature LED strip in slim aluminium profile (12×7 mm cross-section), PMMA micro-diffuser for soft even glow, 3000K warm white, CRI ≥ 90, DALI dimmable driver, adhesive-backed with supplementary clips, IP20, 50,000 hr L80. Installed inside low-height storage cabinetry, display shelving, and under-counter positions in breakout area.</td><td>Mtrs</td><td>50</td><td class="r">4,155</td><td class="r">2,07,750</td></tr>
+
+          <tr class="sec-row"><td colspan="7">Paint & Polish</td></tr>
+          <tr><td>31</td><td><div class="item-name">Paint & Polish — All Surfaces</div></td><td class="desc-cell">Walls: primer + putty + 2 coats emulsion. Wood/veneer: sanding + sealer + 2 coats PU. MS steel: degreasing + primer + enamel/powder coat. Ceiling per architect. Masking, protection, clean-up.</td><td>Lot</td><td>1</td><td class="r">4,50,000</td><td class="r">4,50,000</td></tr>
+
+          <tr class="sec-row"><td colspan="7">Additional Items</td></tr>
+          <tr><td>32</td><td><div class="item-name">Acoustic Panels — Theatre</div></td><td class="desc-cell">600×1200×50 mm fabric-wrapped absorber, 64 kg/m³ glass mineral wool, FR fabric (charcoal), Z-clip mount. NRC ≥ 0.85 (Class A ISO 11654). Rear wall + first-reflection points.</td><td>Nos</td><td>18</td><td class="r">4,500</td><td class="r">81,000</td></tr>
+          <tr><td>33</td><td><div class="item-name">Skirting / Base Trim</div></td><td class="desc-cell">75H×12 mm solid wood/MDF skirting, veneer-matched (oak), concealed pin + adhesive, mitre corners, 2 coats PU. ~85 m perimeter coverage.</td><td>Rft</td><td>280</td><td class="r">350</td><td class="r">98,000</td></tr>
+          <tr><td>34</td><td><div class="item-name">Indoor Planter Box</div></td><td class="desc-cell">GRC planter ~900L×300W×400H mm, waterproof liner, drainage, potting medium. Low-maintenance indoor greenery (Epipremnum/Aglaonema/Dracaena). Matte finish. Initial planting included.</td><td>Nos</td><td>4</td><td class="r">12,500</td><td class="r">50,000</td></tr>
+          <tr><td>35</td><td><div class="item-name">Motorised Roller Blind</div></td><td class="desc-cell">Motorised blackout roller blind system with Somfy or equivalent tubular motor (230V AC, quiet operation ≤ 35 dB), integrated into headbox concealed within ceiling bulkhead or pelmet. Fabric: premium polyester blackout weave (100% light block, fire-retardant Class 1 BS 5867, UV-resistant), colour per architect's selection (charcoal/dark grey). Side channels in anodised aluminium for light-gap elimination. Bottom bar: extruded aluminium with rubber seal strip. Motor includes built-in limit switches, soft start/stop, and compatibility with Lutron HomeWorks QS integration via dry-contact relay or RS-485 for scene-based control (auto-lower in "Cinema" mode, auto-raise in "All Lights On"). Inclusive of motor, fabric, headbox, side channels, bottom bar, control wiring to automation panel, and installation hardware.</td><td>Nos</td><td>5</td><td class="r">35,000</td><td class="r">1,75,000</td></tr>
+
+          <tr class="tot-row"><td colspan="5"></td><td class="r">Interior Total (ex-GST)</td><td class="r">63,96,880</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="total-hero" style="background:var(--grad-int)">
+      <div><div class="total-hero-lbl">Interior Works Total</div><div class="total-hero-name">Finishes · Flooring · Seating · Lighting · Furniture · Ceiling · Paint</div></div>
+      <div style="text-align:right"><div class="total-hero-amount">₹63,96,880</div><div class="total-hero-note">Excluding GST</div></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════ -->
+<!--              OVERVIEW               -->
+<!-- ════════════════════════════════════ -->
+<div class="tab-panel" id="tab-home">
+  <div class="hero-banner" style="background:var(--grad-total)">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Programme Summary</div>
+      <div class="hero-title">Avirat 4th Floor Theatre — Turnkey Integration</div>
+      <div class="hero-sub">Torrent Pharmaceuticals Limited · Shilaj, Ahmedabad</div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-amount">₹1,49,46,314</div>
+      <div class="hero-amount-sub">Grand Total</div>
+    </div>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi-card"><div class="kpi-lbl">AV Systems</div><div class="kpi-val">₹71.66 L</div><div class="kpi-sub">Including 18% GST</div></div>
+    <div class="kpi-card"><div class="kpi-lbl">Automation</div><div class="kpi-val">₹13.83 L</div><div class="kpi-sub">Including 18% GST</div></div>
+    <div class="kpi-card"><div class="kpi-lbl">Interior Works</div><div class="kpi-val">₹63.97 L</div><div class="kpi-sub">Excluding GST</div></div>
+    <div class="kpi-card hero"><div class="kpi-lbl">Grand Total</div><div class="kpi-val">₹1.49 Cr</div><div class="kpi-sub">AV + Automation incl. GST · Interior ex-GST</div></div>
+  </div>
+
+  <div class="col-6040">
+    <div class="card">
+      <div class="card-title">Cost Distribution <span class="card-badge">3 Sections</span></div>
+      <div class="hbar-list">
+        <div class="hbar-row"><div class="hbar-meta"><span class="hbar-lbl">AV Systems</span><span class="hbar-val">₹71,66,002</span></div><div class="hbar-track"><div class="hbar-fill" style="width:48.5%;background:var(--grad-av)"></div></div></div>
+        <div class="hbar-row"><div class="hbar-meta"><span class="hbar-lbl">Automation</span><span class="hbar-val">₹13,83,432</span></div><div class="hbar-track"><div class="hbar-fill" style="width:9.4%;background:var(--grad-auto)"></div></div></div>
+        <div class="hbar-row"><div class="hbar-meta"><span class="hbar-lbl">Interior Works</span><span class="hbar-val">₹63,96,880</span></div><div class="hbar-track"><div class="hbar-fill" style="width:42.8%;background:var(--grad-int)"></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Space Zones <span class="card-badge">7 Zones</span></div>
+      <div class="scope-grid">
+        <div class="scope-item"><div class="scope-dot"></div><div><div class="scope-txt">Entry Porch</div><div class="scope-sub">Level ± 0.0 mm</div></div></div>
+        <div class="scope-item"><div class="scope-dot"></div><div><div class="scope-txt">Executive Seating</div><div class="scope-sub">Level + 200 mm</div></div></div>
+        <div class="scope-item"><div class="scope-dot"></div><div><div class="scope-txt">Theatre — 28 Seats</div><div class="scope-sub">Level + 100 → + 400 mm</div></div></div>
+        <div class="scope-item"><div class="scope-dot"></div><div><div class="scope-txt">Breakout Space</div><div class="scope-sub">Level + 200 mm</div></div></div>
+        <div class="scope-item"><div class="scope-dot"></div><div><div class="scope-txt">Display Area</div><div class="scope-sub">Level + 400 mm</div></div></div>
+        <div class="scope-item"><div class="scope-dot"></div><div><div class="scope-txt">Lobby & Foyer</div><div class="scope-sub">Level ± 0.0 mm</div></div></div>
+        <div class="scope-item"><div class="scope-dot" style="background:var(--pink)"></div><div><div class="scope-txt">Storage</div><div class="scope-sub">Adjacent to theatre</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Project Information</div>
+      <table><tbody>
+        <tr><td style="color:var(--text-muted);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;width:130px">Client</td><td>Torrent Pharmaceuticals Limited</td></tr>
+        <tr><td style="color:var(--text-muted);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">Location</td><td>Avirat, 4th Floor, Shilaj, Ahmedabad</td></tr>
+        <tr><td style="color:var(--text-muted);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">Architect</td><td>Munjal Bhatt Architects</td></tr>
+        <tr><td style="color:var(--text-muted);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">Drawing Ref</td><td>2301-TPH-HQ / D01</td></tr>
+        <tr><td style="color:var(--text-muted);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">Date</td><td>15 April 2026</td></tr>
+        <tr><td style="color:var(--text-muted);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">Integrator</td><td>Layer 1 Group</td></tr>
+      </tbody></table>
+    </div>
+    <div class="card">
+      <div class="card-title">Scope of Work</div>
+      <div class="scope-grid">
+        <div class="scope-item"><div class="scope-dot" style="background:var(--purple)"></div><div><div class="scope-txt">163″ LED Display Wall</div><div class="scope-sub">LG LAPA163</div></div></div>
+        <div class="scope-item"><div class="scope-dot" style="background:#EC4899"></div><div><div class="scope-txt">Professional Audio</div><div class="scope-sub">Line array + subwoofer</div></div></div>
+        <div class="scope-item"><div class="scope-dot" style="background:#34D399"></div><div><div class="scope-txt">Crestron Control</div><div class="scope-sub">AV switching · room automation</div></div></div>
+        <div class="scope-item"><div class="scope-dot" style="background:#FBBF24"></div><div><div class="scope-txt">Lutron Lighting</div><div class="scope-sub">HomeWorks QS + DALI</div></div></div>
+        <div class="scope-item"><div class="scope-dot" style="background:#F87171"></div><div><div class="scope-txt">Interior Finishes</div><div class="scope-sub">Walls · floors · ceiling</div></div></div>
+        <div class="scope-item"><div class="scope-dot" style="background:#60A5FA"></div><div><div class="scope-txt">Furniture & Seating</div><div class="scope-sub">SeatLab theatre + lounge</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  <div class="footer-l1"><span>Layer 1</span> Group · Integrated Intelligence.</div>
+  <div class="footer-ref">L1-TPH-AVIRAT-2026 · 15 Apr 2026</div>
+</div>
+
+<script>
+function toggleTheme(){
+  const h=document.documentElement,isL=h.getAttribute('data-theme')==='light';
+  h.setAttribute('data-theme',isL?'dark':'light');
+  document.getElementById('theme-icon').textContent=isL?'🌙':'☀️';
+  document.getElementById('theme-label').textContent=isL?'Dark':'Light';
+}
+function showTab(id,el){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  if(el) el.classList.add('active');
+  // reset sub-panels to first
+  const tp=document.getElementById('tab-'+id);
+  const subs=tp.querySelectorAll('.sub-panel');
+  const btns=tp.querySelectorAll('.sub-tab');
+  if(subs.length){subs.forEach(s=>s.classList.remove('active'));btns.forEach(b=>b.classList.remove('active'));subs[0].classList.add('active');btns[0].classList.add('active')}
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function showSub(id,btn){
+  const at=document.querySelector('.tab-panel.active');
+  if(at){at.querySelectorAll('.sub-panel').forEach(p=>p.classList.remove('active'));at.querySelectorAll('.sub-tab').forEach(b=>b.classList.remove('active'))}
+  document.getElementById('sub-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
